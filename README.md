@@ -15,7 +15,7 @@ The system uses a pre-built Knowledge Graph ontology (created during thesis) sto
 - **Stage 1-2**: Data ingestion and PDF generation from web sources
 - **Stage 3**: Vector database creation with semantic embeddings
 - **Stage 4**: Knowledge Graph serialization and embedding (from pre-built ontology)
-- **Stage 5**: Dual-channel retrieval (PDF + KG)
+- **Stage 5**: Multi-channel retrieval (PDF embeddings, Knowledge Graph and KG Embeddings)
 - **Stage 6**: LLM-based response generation
 
 ---
