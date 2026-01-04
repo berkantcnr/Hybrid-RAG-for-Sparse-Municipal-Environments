@@ -39,7 +39,7 @@ The system uses a pre-built Knowledge Graph ontology (created during thesis) sto
    - Scrapes municipal websites
    - Creates vector embeddings
    - Embeds knowledge graph data
-   - Tests dual-channel retrieval
+   - Tests multi-channel retrieval
    - Generates answers with source attribution
 
 ---
