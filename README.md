@@ -23,7 +23,7 @@ The system uses a pre-built Knowledge Graph ontology (created during thesis) sto
 
 ## Running on Google Colab
 
-2. **Open the main notebook**:
+2. **Open the main notebook on Colab**:
    - Use `Hybrid_RAG_System_Notebook_Final.ipynb` 
    - Execute cells sequentially.
    - Huggingface and Neo4j credentials needed to connect knowledge graph and downloading llm model. 
