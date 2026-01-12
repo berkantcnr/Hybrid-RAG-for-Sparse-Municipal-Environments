@@ -8,15 +8,16 @@
 ## Overview
 
 A **Hybrid Retrieval-Augmented Generation (RAG)** system that combines semantic vector search (**ChromaDB**), structured Knowledge Graphs (**Neo4j**), and Large Language Models (**Meta Llama 3.1**) to answer questions about municipal user queries to test the thesis.
-
+All system tested on Google Colab environment with A100 GPU. All data sources were collected automatically in the `Hybrid_RAG_System.ipynb`.
 The system uses a pre-built Knowledge Graph ontology (created during thesis) stored in Neo4j to provide structured context alongside vector search results.
 
 ### Architecture
 - **Stage 1-2**: Data ingestion and PDF generation from web sources
 - **Stage 3**: Vector database creation with semantic embeddings
-- **Stage 4**: Knowledge Graph serialization and embedding (from pre-built ontology)
-- **Stage 5**: Dual-channel retrieval (PDF + KG)
-- **Stage 6**: LLM-based response generation
+- **Stage 4**: Knowledge Graph creation (from pre-built ontology)
+- **Stage 5**: Knowledge Graph serialization and embedding stored in ChromaDB
+- **Stage 6**: Multi-channel retrieval (PDF embeddings, Knowledge Graph and KG Embeddings)
+- **Stage 7**: LLM-based response generation
 
 ---
 
@@ -39,7 +40,7 @@ The system uses a pre-built Knowledge Graph ontology (created during thesis) sto
    - Scrapes municipal websites
    - Creates vector embeddings
    - Embeds knowledge graph data
-   - Tests dual-channel retrieval
+   - Tests multi-channel retrieval
    - Generates answers with source attribution
 
 ---
