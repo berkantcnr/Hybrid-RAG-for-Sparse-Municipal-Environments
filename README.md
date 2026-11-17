@@ -17,7 +17,7 @@ The system was built and evaluated on data from 14 organisations of the Nürnber
 
 ## Related repository
 
-The data sources, the domain ontology (OWL), the SPARQL competency question queries and their outputs are stored in a separate repository: [data repo linki]
+The data sources, the domain ontology (OWL), the SPARQL competency question queries and their outputs are stored in a separate repository: [(https://github.com/berkantcnr/Hybrid-RAG-for-Sparse-Municipal-Environments-DataSource)]
 
 ## Architecture
 
