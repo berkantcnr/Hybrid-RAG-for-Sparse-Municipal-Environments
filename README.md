@@ -1,49 +1,55 @@
-# Hybrid RAG for Sparse Municipal Environments
+# Hybrid-RAG for Sparse Municipal Data Environments
 
-**Master's Thesis Project** | *Friedrich-Alexander-Universität Erlangen-Nürnberg*  
+**Master's Thesis Project** | *Friedrich-Alexander-Universität Erlangen-Nürnberg, Chair of Information Systems I*
 **Author:** Berkant Cinar
 
 ---
 
 ## Overview
 
-A **Hybrid Retrieval-Augmented Generation (RAG)** system that combines semantic vector search (**ChromaDB**), structured Knowledge Graphs (**Neo4j**), and Large Language Model (**Meta LLaMA 3.1 8B Instruct**) to answer questions about municipal user queries to test the thesis.
-All system tested on Google Colab environment with A100 GPU. All data sources were collected automatically in the `Hybrid_RAG_System_Notebook_Final.ipynb`.
-The system uses a pre-built Knowledge Graph ontology (created during thesis) stored in Neo4j to provide structured context alongside vector search results.
+Municipal information about shared resources, such as workshops, devices and community spaces, is scattered across many websites with little structure, and citizens rarely use the same words as the official sources. This project addresses this problem with a **Hybrid Retrieval-Augmented Generation (RAG)** system that combines:
 
-### Architecture
-- **Stage 1-2**: Data ingestion and PDF generation from web sources
-- **Stage 3**: Vector database creation with semantic embeddings
-- **Stage 4**: Knowledge Graph creation (from pre-built ontology)
-- **Stage 5**: Knowledge Graph serialization and embedding stored in ChromaDB
-- **Stage 6**: Multi-channel retrieval (PDF embeddings, Knowledge Graph and KG Embeddings)
-- **Stage 7**: LLM-based response generation
+- a **domain ontology** built on CIDOC CRM (ISO 21127) and stored as a knowledge graph in **Neo4j**,
+- **semantic vector search** over municipal web content and serialised graph facts in **ChromaDB**,
+- **Meta Llama 3.1 8B Instruct** for intent extraction and answer generation.
 
----
+The system was built and evaluated on data from 14 organisations of the Nürnberg innovation ecosystem. The full pipeline is implemented in `Hybrid_RAG_System_Notebook_Final.ipynb` and was tested on Google Colab with an A100 GPU.
+
+## Related repository
+
+The data sources, the domain ontology (OWL), the SPARQL competency question queries and their outputs are stored in a separate repository: [data repo linki]
+
+## Architecture
+
+- **Stages 1–2:** Data collection from municipal websites, cleaning and PDF generation
+- **Stage 3:** Chunking and vector database creation with multilingual embeddings
+- **Stage 4:** Knowledge graph creation in Neo4j from the ontology
+- **Stage 5:** Knowledge graph serialisation and embedding in ChromaDB
+- **Stage 6:** Multi-channel retrieval: document embeddings, Cypher queries on the knowledge graph and knowledge graph embeddings
+- **Stage 7:** LLM-based response generation with source attribution
+
+## Example
+
+**Question:** "Which publicly accessible spaces are suitable for hosting small public meetings?"
+
+**Result:** The system returned all three public spaces defined in the ontology, including the Event Hall of Heizhaus Nürnberg and KLARA Open, although none of them is labelled as a meeting room in the sources.
 
 ## Running on Google Colab
 
-2. **Open the main notebook on Colab**:
-   - Use `Hybrid_RAG_System_Notebook_Final.ipynb` 
-   - Execute cells sequentially.
-   - Huggingface and Neo4j credentials needed to connect knowledge graph and downloading llm model. 
-
-3. **Configure credentials** (.env):
+1. **Open the main notebook** `Hybrid_RAG_System_Notebook_Final.ipynb` in Google Colab.
+2. **Configure credentials** in a `.env` file. Hugging Face access is needed to download the LLM, and Neo4j access to connect to the knowledge graph:
    ```
    HUGGINGFACEHUB_API_TOKEN=hf_your_token
    NEO4J_URI=neo4j+s://your-instance
    NEO4J_USERNAME=neo4j
    NEO4J_PASSWORD=your_password
    ```
-
-4. **Run all cells** - the system automatically:
-   - Scrapes municipal websites
-   - Creates vector embeddings
-   - Embeds knowledge graph data
-   - Tests multi-channel retrieval
-   - Generates answers with source attribution
-
----
+3. **Run all cells in order.** The notebook automatically:
+   - scrapes the municipal websites,
+   - creates the vector embeddings,
+   - imports and embeds the knowledge graph data,
+   - runs multi-channel retrieval,
+   - generates answers with source attribution.
 
 ## Requirements
 
@@ -67,16 +73,13 @@ python-dotenv==1.2.1
 ipykernel==6.17.1
 ```
 
----
-
 ## Citation
 
 ```bibtex
-@thesis{cinar2026hybrid,
-  author={Cinar, Berkant},
-  title={Hybrid Retrieval-Augmented Generation for Sparse Municipal Environments},
-  school={Friedrich-Alexander-Universität Erlangen-Nürnberg},
-  year={2026},
-  type={Master's Thesis}
+@mastersthesis{cinar2026hybrid,
+  author = {Cinar, Berkant},
+  title  = {Hybrid-RAG for Sparse Municipal Data Environments},
+  school = {Friedrich-Alexander-Universität Erlangen-Nürnberg},
+  year   = {2026}
 }
 ```
