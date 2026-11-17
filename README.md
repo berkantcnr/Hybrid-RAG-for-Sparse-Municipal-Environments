@@ -1,6 +1,7 @@
 # Hybrid-RAG for Sparse Municipal Data Environments
 
-**Master's Thesis Project** | *Friedrich-Alexander-Universität Erlangen-Nürnberg, Chair of Information Systems I*
+**Master's Thesis Project** | *Friedrich-Alexander-Universität Erlangen-Nürnberg, Chair of Information Systems I*  
+
 **Author:** Berkant Cinar
 
 ---
